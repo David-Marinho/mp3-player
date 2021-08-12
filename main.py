@@ -1,25 +1,73 @@
 from pygame import mixer
 from os import listdir
+from tkinter import *
 
-lista = list()
+janela = Tk()
+janela.geometry("800x400")
+
+musicas = dict()
+arq = listdir('musicas')
+numero_Faixa = 0
+tocando = True
+
 mixer.init()
-cont = 1
 
 
-for i in listdir('musicas'):
-    print(f'{cont} = {i}')
-    lista.append(i)
-    cont += 1
+def mudar_logo(status):
+    global pause_logo
+    if status == 'play':
+        pause_logo['file'] = 'outline_play_arrow_black_24dp.png'
 
-musica = int(input('digite o numero da musica que voce quer escutar: ')) - 1
-print(f'tocando: {lista[musica]}')
-mixer.music.load(f'musicas/{lista[musica]}')
-mixer.music.play()
+
+    else:
+        pause_logo['file'] = 'outline_pause_black_24dp.png'
+
+    pausePlay.config(image=pause_logo)
+
+
+def pause_play():
+    global tocando
+    global pause_logo
+    if tocando:
+        mixer.music.pause()
+        tocando = False
+        mudar_logo('play')
+
+
+    else:
+        mixer.music.unpause()
+        tocando = True
+        mudar_logo('pause')
+
+
+
+def tocar(faixa):
+    mixer.music.load(f'musicas/{faixa}')
+    mixer.music.play()
+
+
+def exibir_botao(musica):
+    bt = Button(janela, text=musica, command = lambda: tocar(musica))
+    bt.grid(sticky='w')
+
+
+for i in range(len(arq)):
+    if 'mp3' in arq[i].split('.'):
+        musicas[i] = arq[i]
+        exibir_botao(musicas[i])
+pause_logo = PhotoImage(file='outline_pause_black_24dp.png')
+
+pausePlay = Button(janela, command = lambda: pause_play(), image=pause_logo)
+pausePlay.place(x=240, y=350)
+
+
+
+
+
+
+"""
 while True:
     escolha = str(input('digite: \n\nstop \nnext \npause \ndespause \nsair \n\noque voce quer fazer? '))
-
-    if escolha == 'stop':
-        mixer.music.stop()
 
     elif escolha == 'next':
         mixer.music.stop()
@@ -27,18 +75,6 @@ while True:
         mixer.music.load(f'musicas/{lista[musica]}')
         mixer.music.play()
         print(f'tocando: {lista[musica]}')
-    
-    elif escolha == 'pause':
-        mixer.music.pause()
-    
-    elif escolha == 'despause':
-        mixer.music.unpause()
-    
-    elif escolha == 'sair':
-        mixer.music.stop()
-        break
+"""
 
-    else:
-        print('comando nao reconhecido. Por favor, tente novamente \n')
-    
-    escolha = None
+janela.mainloop()
