@@ -1,21 +1,34 @@
-from pygame import mixer
-from tkinter import *
+import tkinter as tk
 
 
+def criar_Janela():
+    root = tk.Tk()
+    root.geometry('850x500')
+    root.config(bg='#fff')
+    return root
 
-
-def pause_play():
+"""def pause_play():
     global tocando
-    global pausePlay
+    global pause_logo
     if tocando:
         mixer.music.pause()
         tocando = False
-        pause_logo = PhotoImage(file='outline_play_arrow_black_24dp.png')
+        mudar_logo('play')
 
 
     else:
         mixer.music.unpause()
         tocando = True
-        pause_logo = PhotoImage(file='outline_pause_black_24dp.png')
+        mudar_logo('pause')
 
-    pausePlay.config(image=pause_logo)
+
+def mudar_logo(status):
+    global pause_logo
+    if status == 'play':
+        pause_logo['file'] = 'imagens/botao play.png'
+
+
+    else:
+        pause_logo['file'] = 'imagens/botao pause.png'
+
+    pausePlay.config(image=pause_logo)"""
