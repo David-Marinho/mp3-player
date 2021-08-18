@@ -1,28 +1,8 @@
-from os import listdir
-from pygame import mixer
-from GUI import *
-
-musicas = list()
-tocando = True
-janela = tela
+from func import *
+from mp3_Classe import mp3
+root = criar_Janela()
+mp3 = mp3(root)
+mp3.criar_Menu()
 
 
-for i in listdir('musicas'):
-    if 'mp3' in i.split('.'):
-        print('ok')
-        musicas.append(i)
-        janela.add_btn(i, janela)
-
-
-def tocar(faixa):
-    mixer.music.load(f'musicas/{faixa}')
-    mixer.music.play()
-
-"""
-elif escolha == 'next':
-mixer.music.stop()
-musica +=1
-mixer.music.load(f'musicas/{lista[musica]}')
-mixer.music.play()
-print(f'tocando: {lista[musica]}')
-"""
+root.mainloop()
