@@ -48,21 +48,3 @@ class mp3:
         lb.configure(font=("Arial", 16))
         lb.place(x=310, y=415)
 
-        """janela = Tk()
-        janela.geometry("850x500")
-
-        barra_image = PhotoImage(file='imagens/barra.png')
-        barra_Lb = Label(width=850, height=97, image=barra_image)
-        barra_Lb.place(x=0, y=402)
-
-        pause_logo = PhotoImage(file='imagens/botao pause.png')
-        pausePlay = Button(janela,  image=pause_logo, borderwidth=0, bg='#444444', )
-        pausePlay.place(x=400, y=450)
-
-        janela.mainloop()
-
-    @staticmethod
-    def add_btn(nome, mestre):
-        print(nome)
-        bt = Button(mestre, text=nome)
-        bt.grid(sticky='w')"""
