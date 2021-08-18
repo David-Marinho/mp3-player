@@ -1,28 +1,47 @@
-from os import listdir
 from pygame import mixer
-from GUI import *
+from os import listdir
+from func import *
+from estilo import menu
 
 musicas = list()
-tocando = True
-janela = tela
-
+lista = ['stop', 'next', 'pause', 'despause', 'sair']
+mixer.init()
+cont = 1
 
 for i in listdir('musicas'):
     if 'mp3' in i.split('.'):
-        print('ok')
         musicas.append(i)
-        janela.add_btn(i, janela)
+        cont += 1
+menu(musicas)
 
+musica = int(input('digite o numero da musica que voce quer escutar: ')) - 1
+tocar(lista[musica])
 
-def tocar(faixa):
-    mixer.music.load(f'musicas/{faixa}')
-    mixer.music.play()
+while True:
+    menu(lista)
+    escolha = int(input('digite um numero: '))
 
-"""
-elif escolha == 'next':
-mixer.music.stop()
-musica +=1
-mixer.music.load(f'musicas/{lista[musica]}')
-mixer.music.play()
-print(f'tocando: {lista[musica]}')
-"""
+    if escolha == 1:
+        mixer.music.stop()
+
+    elif escolha == 2:
+        mixer.music.stop()
+        musica += 1
+        mixer.music.load(f'musicas/{lista[musica]}')
+        mixer.music.play()
+        print(f'tocando: {lista[musica]}')
+
+    elif escolha == 3:
+        mixer.music.pause()
+
+    elif escolha == 4:
+        mixer.music.unpause()
+
+    elif escolha == 5:
+        mixer.music.stop()
+        break
+
+    else:
+        print('comando nao reconhecido. Por favor, tente novamente \n')
+
+    escolha = None
