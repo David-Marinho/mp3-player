@@ -1,2 +1,2 @@
-# 🌟mp3-player
+# 🌟mp3-player com interface gráfica 
 tocador de musicas no formato: mp3
