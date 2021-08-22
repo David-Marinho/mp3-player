@@ -1,26 +1,25 @@
 from tkinter import *
+from func import tocar
 
-eixoY = 20
-corfundo = '#444444'
+y = 0
 
 
-class musicas:
+class bt_musicas:
     def __init__(self, raiz, nome, img):
         self.raiz = raiz
         self.nome = nome
         self.img = img
 
     def criar_bt(self):
-        global eixoY
-        botao = Button(self.raiz, text=self.nome, image=self.img, borderwidth=0)     #        bt = Button().bind().place()
-        botao.bind('<Button-1>', self.tocar_musica)
-        botao.place(x=20, y=eixoY)
-
+        global y
+        botao = Button(self.raiz, text=self.nome, image=self.img, borderwidth=0)
+        botao.bind('<Button-1>', self.bt_click)
+        botao.grid(column=0, row=y, padx=10, pady=10)
         self.criar_lb()
-        eixoY += 90
+        y += 1
 
     def criar_lb(self):
-        Label(self.raiz, text=self.nome, font='20', bg=corfundo).place(x=40, y=eixoY+20)
+        Label(self.raiz, text=self.nome, font='20', bg='#444444').grid(column=0, row=y)
 
-    def tocar_musica(self, event=None):
-        print(f'tocando: {event.widget["text"]}')
+    def bt_click(self, event=None):
+        tocar(event.widget['text'])
