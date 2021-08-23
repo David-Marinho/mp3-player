@@ -1,12 +1,19 @@
-from func import *
-from mp3_Classe import mp3
+from tkinter import *
+from musicas_Classe import bt_musicas
 from os import listdir
-from func import musicas
+from classe_menu import menu
 
-root = criar_Janela()
-mp3 = mp3(root)
-mp3.criar_Menu()
-mp3.criar_musica(musicas(listdir('musicas')))
+arq = listdir('musicas')
+raiz = Tk()
+raiz.geometry('850x500')
 
+img = PhotoImage(file='imagens/caixas.png')
+for i in range(len(arq)):
+    if 'mp3' in arq[i].split('.'):
+        musica = bt_musicas(raiz, arq[i], img)
+        musica.criar_bt()
 
-root.mainloop()
+menu = menu(raiz)
+menu.criar_menu()
+
+raiz.mainloop()
