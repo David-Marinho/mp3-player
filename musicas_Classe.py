@@ -22,4 +22,4 @@ class bt_musicas:
         Label(self.raiz, text=self.nome, font='20', bg='#444444').grid(column=0, row=y)
 
     def bt_click(self, event=None):
-        tocar(event.widget['text'])
+        tocar(event.widget['text'], self.raiz)
