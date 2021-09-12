@@ -1,6 +1,5 @@
 from tkinter import *
 from pygame import mixer
-from sys import exit
 
 reproduzindo = False
 
@@ -17,25 +16,12 @@ def tocar(musica, raiz):
 def tocando(button):
     global reproduzindo
     if reproduzindo:
-        try:
-            mixer.music.pause()
-        
-        except:
-            print('nao é possivel pausar no momento, selecione a musica primeiro')
-            exit()
-        
         pausar(button)
-        
+        mixer.music.pause()
 
     else:
-        try:
-            mixer.music.unpause()
-        
-        except:
-            print('nao é possivel pausar no momento, selecione a musica primeiro')
-
         despausar(button)
-        
+        mixer.music.unpause()
 
 
 def pausar(button):
